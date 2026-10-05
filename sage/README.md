@@ -26,8 +26,10 @@ Eukrasian Dosis heals that ally after each periodic tick while the target remain
 
 ## Client
 
-The client needs both `Spell.dbc` rows and `SkillLineAbility.dbc` mappings.
-The current mappings put the playable spells in the Priest Holy tab.
+The client needs `Spell.dbc` rows and `SkillLineAbility.dbc` mappings.
+The Sage tab also needs `SkillLine.dbc` and `SkillRaceClassInfo.dbc` rows.
+The current mappings put the playable spells in a separate Sage tab.
+Skill line 800 and a copy of the Priest Holy routing row define this tab.
 The patch keeps the stock icons from each spell template.
 
 Generate the client tables and pack the archive:
@@ -87,8 +89,8 @@ It clears the rank text and replaces all eight localized names and descriptions.
 - The compatible Docker image and the complete `mangosd` target compiled successfully.
 - The spell SQL applied twice without duplicate rows.
 - The live world server loaded all 17 spell rows and reached healthy status.
-- The client patch generated all 17 names and 14 Priest spellbook mappings.
-- The MPQ packer read both tables back and compared their bytes with the generated tables.
+- The client patch generated all 17 names and 14 Sage spellbook mappings.
+- The MPQ packer read all four tables back and compared their bytes with the generated tables.
 - The installed archive matches the generated archive.
 
 Combat behavior, the rendered spellbook, and the trainer window still need live checks.

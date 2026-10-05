@@ -74,6 +74,22 @@ class Dbc:
 def generate(base, out):
     spells = Dbc(base/'Spell.dbc', 173)
     abilities = Dbc(base/'SkillLineAbility.dbc', 15)
+    lines = Dbc(base/'SkillLine.dbc', 22)
+    routing = Dbc(base/'SkillRaceClassInfo.dbc', 8)
+    sage_line = 800
+    # Clone Holy's tab and race/class routing, then give Sage its own name.
+    lines.rows = [r for r in lines.rows if lines.get(r, 0) != sage_line]
+    routing.rows = [r for r in routing.rows if routing.get(r, 1) != sage_line]
+    line = next(r for r in lines.rows if lines.get(r, 0) == 56).copy()
+    lines.put(line, 0, sage_line)
+    lines.text(line, 3, 'Sage')
+    lines.text(line, 12, 'Sage damage, healing, shields, and resources.')
+    lines.rows.append(line)
+    route = next(r for r in routing.rows if routing.get(r, 1) == 56
+                 and routing.get(r, 3) == 16).copy()
+    routing.put(route, 0, 60000)
+    routing.put(route, 1, sage_line)
+    routing.rows.append(route)
     templates = {spells.get(row, 0): row for row in spells.rows}
     # Regeneration clears only this project's rows.
     spells.rows = [row for row in spells.rows if not 40000 <= spells.get(row, 0) <= 40099]
@@ -100,10 +116,10 @@ def generate(base, out):
             spells.text(row, 147, '')
             if spell_id <= 40013:
                 assert spells.get(row, 6) & 0xa0 == 0 and spells.get(row, 3) == 0, entry['name']
-                # Copy Smite's Holy skill entry; Priest is the current Sage base class.
+                # Copy Smite's ability and move it into the Sage skill line.
                 template = next(a for a in abilities.rows if abilities.get(a, 2) == 10934)
                 ability = template.copy()
-                for column, value in {0:60000+spell_id-40000, 2:spell_id, 3:0,
+                for column, value in {0:60000+spell_id-40000, 1:sage_line, 2:spell_id, 3:0,
                                       4:16, 7:0, 8:0, 9:0}.items():
                     abilities.put(ability, column, value)
                 abilities.rows.append(ability)
@@ -111,7 +127,9 @@ def generate(base, out):
     out.mkdir(parents=True, exist_ok=True)
     spells.write(out/'Spell.dbc')
     abilities.write(out/'SkillLineAbility.dbc')
-    print('Generated 17 spell rows and 14 Priest spellbook entries.')
+    lines.write(out/'SkillLine.dbc')
+    routing.write(out/'SkillRaceClassInfo.dbc')
+    print('Generated 17 spell rows and a Sage tab with 14 playable spells.')
 
 
 if __name__ == '__main__':
