@@ -1,0 +1,7 @@
+[package]
+name = "sage-mpq"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wow-mpq = "=0.7.0"
