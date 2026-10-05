@@ -76,7 +76,7 @@ INSERT INTO spell_template SELECT * FROM sage_spell;
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 20770 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40010, `nameSubtext` = 'Rank 5', `entry` = 40010, `build` = 5875, `name` = 'Egeiro', `description` = 'Resurrects one dead ally with $s1 health and $m1 mana.', `auraDescription` = '', `script_name` = '';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40010, `nameSubtext` = 'Rank 5', `entry` = 40010, `build` = 5875, `name` = 'Egeiro', `description` = 'Resurrects one dead ally with $s1 health and restores mana.', `auraDescription` = '', `script_name` = '';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Addersgall
@@ -447,28 +447,28 @@ INSERT INTO spell_template SELECT * FROM sage_spell;
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 2006 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40010, `nameSubtext` = 'Rank 1', `entry` = 40063, `build` = 5875, `name` = 'Egeiro', `description` = 'Resurrects one dead ally with $s1 health and $m1 mana.', `auraDescription` = '', `script_name` = '';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40010, `nameSubtext` = 'Rank 1', `entry` = 40063, `build` = 5875, `name` = 'Egeiro', `description` = 'Resurrects one dead ally with $s1 health and restores mana.', `auraDescription` = '', `script_name` = '';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Egeiro
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 2010 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40010, `nameSubtext` = 'Rank 2', `entry` = 40064, `build` = 5875, `name` = 'Egeiro', `description` = 'Resurrects one dead ally with $s1 health and $m1 mana.', `auraDescription` = '', `script_name` = '';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40010, `nameSubtext` = 'Rank 2', `entry` = 40064, `build` = 5875, `name` = 'Egeiro', `description` = 'Resurrects one dead ally with $s1 health and restores mana.', `auraDescription` = '', `script_name` = '';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Egeiro
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10880 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40010, `nameSubtext` = 'Rank 3', `entry` = 40065, `build` = 5875, `name` = 'Egeiro', `description` = 'Resurrects one dead ally with $s1 health and $m1 mana.', `auraDescription` = '', `script_name` = '';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40010, `nameSubtext` = 'Rank 3', `entry` = 40065, `build` = 5875, `name` = 'Egeiro', `description` = 'Resurrects one dead ally with $s1 health and restores mana.', `auraDescription` = '', `script_name` = '';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Egeiro
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10881 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40010, `nameSubtext` = 'Rank 4', `entry` = 40066, `build` = 5875, `name` = 'Egeiro', `description` = 'Resurrects one dead ally with $s1 health and $m1 mana.', `auraDescription` = '', `script_name` = '';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40010, `nameSubtext` = 'Rank 4', `entry` = 40066, `build` = 5875, `name` = 'Egeiro', `description` = 'Resurrects one dead ally with $s1 health and restores mana.', `auraDescription` = '', `script_name` = '';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Druochole

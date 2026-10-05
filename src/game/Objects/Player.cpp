@@ -3836,6 +3836,19 @@ void Player::UpdateSageSpellsForLevel()
     for (auto const& rank : sageSpellLevels)
         if (rank.level <= GetLevel() && !HasSpell(rank.spell))
             LearnSpell(rank.spell, false);
+    // Recursive rank learning marks lower ranks dependent. If the requested
+    // higher rank was removed for its level, these ranks must save on their own.
+    for (auto const& rank : sageSpellLevels)
+        if (rank.level <= GetLevel())
+        {
+            auto spell = m_spells.find(rank.spell);
+            if (spell != m_spells.end() && spell->second.dependent)
+            {
+                spell->second.dependent = false;
+                if (spell->second.state != PLAYERSPELL_NEW)
+                    spell->second.state = PLAYERSPELL_CHANGED;
+            }
+        }
     m_updatingSageSpells = false;
     if (changedActions && IsInWorld())
         GetSession()->GetMasterPlayer()->SendInitialActionButtons();
