@@ -1,0 +1,2 @@
+id	name	base	changes	script	note
+40000	Dosis	10934	school=3;spellLevel=60;baseLevel=60;maxLevel=60;spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;effectBasePoints1=499;effectDieSides1=1;effectRealPointsPerLevel1=0;manaCost=180	-	Deals 500 nature damage to one enemy.
