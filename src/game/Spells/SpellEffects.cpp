@@ -28,6 +28,7 @@
 #include "World.h"
 #include "ObjectMgr.h"
 #include "SpellMgr.h"
+#include "GridMap.h"
 #include "Player.h"
 #include "Spell.h"
 #include "DynamicObject.h"
@@ -5883,6 +5884,14 @@ void Spell::EffectBind(SpellEffectIndex effIdx)
     WorldLocation loc;
     player->GetPosition(loc);
     areaId = player->GetAreaId();
+
+    // vmangos-ascian: a bind spell with a row in spell_target_position binds there,
+    // so an innkeeper on one map can bind a player to a plaza on another.
+    if (SpellTargetPosition const* fixed = sSpellMgr.GetSpellTargetPosition(m_spellInfo->Id))
+    {
+        loc = *fixed;
+        areaId = sTerrainMgr.GetAreaId(loc.mapId, loc.x, loc.y, loc.z);
+    }
 
     player->SetHomebindToLocation(loc, areaId);
 
