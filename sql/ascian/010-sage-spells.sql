@@ -6,6 +6,118 @@ DELETE FROM spell_template WHERE entry BETWEEN 40000 AND 40099;
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10934 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `school` = 3, `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `effectBasePoints1` = 499, `effectDieSides1` = 1, `effectRealPointsPerLevel1` = 0, `manaCost` = 180, `entry` = 40000, `build` = 5875, `name` = 'Dosis', `nameSubtext` = '', `description` = 'Deals 500 nature damage to one enemy.', `auraDescription` = '', `script_name` = '';
+UPDATE sage_spell SET `school` = 3, `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `effectBasePoints1` = 499, `effectDieSides1` = 1, `effectRealPointsPerLevel1` = 0, `manaCost` = 180, `entry` = 40000, `build` = 5875, `name` = 'Dosis', `nameSubtext` = '', `description` = 'Deals 500 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Eukrasian Dosis
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10894 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `school` = 3, `effectBasePoints1` = 149, `effectDieSides1` = 1, `effectRealPointsPerLevel1` = 0, `manaCost` = 180, `entry` = 40001, `build` = 5875, `name` = 'Eukrasian Dosis', `nameSubtext` = '', `description` = 'Consumes Eukrasia to deal 150 nature damage every 3 seconds for 18 seconds.', `auraDescription` = '', `script_name` = 'spell_sage_eukrasian_dosis';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Diagnosis
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 2053 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `effectBasePoints1` = 899, `effectDieSides1` = 1, `effectRealPointsPerLevel1` = 0, `manaCost` = 230, `castingTimeIndex` = 16, `entry` = 40002, `build` = 5875, `name` = 'Diagnosis', `nameSubtext` = '', `description` = 'Heals one ally for 900 health.', `auraDescription` = '', `script_name` = '';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Prognosis
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10961 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `effectBasePoints1` = 599, `effectDieSides1` = 1, `effectRealPointsPerLevel1` = 0, `manaCost` = 400, `castingTimeIndex` = 19, `effectRadiusIndex1` = 10, `entry` = 40003, `build` = 5875, `name` = 'Prognosis', `nameSubtext` = '', `description` = 'Heals nearby party members for 600 health.', `auraDescription` = '', `script_name` = '';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Eukrasia
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 14751 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `attributes` = 0, `attributesEx2` = 0, `castingTimeIndex` = 1, `durationIndex` = 1, `recoveryTime` = 0, `procFlags` = 0, `procCharges` = 0, `effectApplyAuraName1` = 4, `effectBasePoints1` = 0, `effectMiscValue1` = 0, `effect2` = 0, `effectApplyAuraName2` = 0, `effectBasePoints2` = 0, `effectMiscValue2` = 0, `entry` = 40004, `build` = 5875, `name` = 'Eukrasia', `nameSubtext` = '', `description` = 'Enables one Eukrasian spell within 10 seconds.', `auraDescription` = '', `script_name` = '';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Eukrasian Diagnosis
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10901 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `attributes` = 65536, `attributesEx2` = 524288, `effectBasePoints1` = 999, `effectDieSides1` = 1, `effectRealPointsPerLevel1` = 0, `effectImplicitTargetA1` = 21, `category` = 0, `categoryRecoveryTime` = 0, `manaCost` = 300, `durationIndex` = 2, `entry` = 40005, `build` = 5875, `name` = 'Eukrasian Diagnosis', `nameSubtext` = '', `description` = 'Consumes Eukrasia to shield one ally for 1000 damage for 30 seconds.', `auraDescription` = '', `script_name` = 'spell_sage_eukrasia';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Eukrasian Prognosis
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10901 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `attributes` = 65536, `attributesEx2` = 524288, `effectBasePoints1` = 599, `effectDieSides1` = 1, `effectRealPointsPerLevel1` = 0, `effectImplicitTargetA1` = 20, `category` = 0, `categoryRecoveryTime` = 0, `manaCost` = 450, `durationIndex` = 2, `effectRadiusIndex1` = 10, `entry` = 40006, `build` = 5875, `name` = 'Eukrasian Prognosis', `nameSubtext` = '', `description` = 'Consumes Eukrasia to shield nearby party members for 600 damage for 30 seconds.', `auraDescription` = '', `script_name` = 'spell_sage_eukrasia';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Kardia
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 15286 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `school` = 1, `attributes` = 65536, `attributesEx3` = 0, `effectImplicitTargetA1` = 21, `effectBasePoints1` = 0, `procFlags` = 0, `durationIndex` = 21, `manaCost` = 0, `recoveryTime` = 0, `entry` = 40007, `build` = 5875, `name` = 'Kardia', `nameSubtext` = '', `description` = 'Marks one ally to receive 170 health from each successful Sage damage spell.', `auraDescription` = '', `script_name` = 'spell_sage_kardia';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Phlegma
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10934 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `school` = 3, `effectBasePoints1` = 699, `effectDieSides1` = 1, `effectRealPointsPerLevel1` = 0, `manaCost` = 250, `castingTimeIndex` = 1, `recoveryTime` = 30000, `entry` = 40008, `build` = 5875, `name` = 'Phlegma', `nameSubtext` = '', `description` = 'Deals 700 nature damage instantly with a 30 second cooldown.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Icarus
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 20252 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `attributes` = 65536, `attributesEx` = 0, `powerType` = 0, `manaCost` = 0, `rangeIndex` = 34, `effectImplicitTargetA1` = 25, `effect2` = 0, `effectTriggerSpell2` = 0, `effectImplicitTargetA2` = 0, `effectMechanic2` = 0, `category` = 0, `categoryRecoveryTime` = 0, `recoveryTime` = 45000, `entry` = 40009, `build` = 5875, `name` = 'Icarus', `nameSubtext` = '', `description` = 'Dashes to an ally or enemy without stunning them.', `auraDescription` = '', `script_name` = '';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Egeiro
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 20770 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `effectBasePoints1` = 1499, `effectMiscValue1` = 1000, `manaCost` = 700, `entry` = 40010, `build` = 5875, `name` = 'Egeiro', `nameSubtext` = '', `description` = 'Resurrects one dead ally with 1500 health and 1000 mana.', `auraDescription` = '', `script_name` = '';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Addersgall
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 14751 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `attributes` = 0, `attributesEx2` = 0, `durationIndex` = 21, `recoveryTime` = 0, `procFlags` = 0, `procCharges` = 0, `effectApplyAuraName1` = 4, `effectAmplitude1` = 20000, `effectBasePoints1` = 0, `effectMiscValue1` = 0, `effect2` = 0, `effectApplyAuraName2` = 0, `effectBasePoints2` = 0, `effectMiscValue2` = 0, `entry` = 40011, `build` = 5875, `name` = 'Addersgall', `nameSubtext` = '', `description` = 'Generates one Addersgall charge every 20 seconds up to three charges.', `auraDescription` = '', `script_name` = 'spell_sage_addersgall_timer';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Druochole
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10917 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `castingTimeIndex` = 1, `manaCost` = 0, `effectBasePoints1` = 999, `effectDieSides1` = 1, `effectRealPointsPerLevel1` = 0, `entry` = 40012, `build` = 5875, `name` = 'Druochole', `nameSubtext` = '', `description` = 'Consumes one Addersgall charge to heal an ally for 1000 health and restore 7 percent of caster mana.', `auraDescription` = '', `script_name` = 'spell_sage_addersgall';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Kerachole
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10901 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `attributes` = 65536, `attributesEx2` = 524288, `effectApplyAuraName1` = 87, `effectBasePoints1` = -11, `effectDieSides1` = 1, `effectRealPointsPerLevel1` = 0, `effectMiscValue1` = 127, `effectImplicitTargetA1` = 20, `effectRadiusIndex1` = 10, `durationIndex` = 8, `manaCost` = 0, `category` = 0, `categoryRecoveryTime` = 0, `recoveryTime` = 30000, `entry` = 40013, `build` = 5875, `name` = 'Kerachole', `nameSubtext` = '', `description` = 'Consumes one Addersgall charge to reduce nearby party damage taken by 10 percent for 15 seconds and restore 7 percent of caster mana.', `auraDescription` = '', `script_name` = 'spell_sage_addersgall';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Addersgall Charge
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 14751 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `attributes` = 0, `attributesEx2` = 0, `durationIndex` = 21, `recoveryTime` = 0, `procFlags` = 0, `procCharges` = 0, `stackAmount` = 3, `effectApplyAuraName1` = 4, `effectBasePoints1` = 0, `effectMiscValue1` = 0, `effect2` = 0, `effectApplyAuraName2` = 0, `effectBasePoints2` = 0, `effectMiscValue2` = 0, `entry` = 40014, `build` = 5875, `name` = 'Addersgall Charge', `nameSubtext` = '', `description` = 'Internal resource aura holding one to three Addersgall charges.', `auraDescription` = '', `script_name` = '';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Kardia Link
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 14751 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `attributes` = 0, `attributesEx2` = 0, `durationIndex` = 21, `recoveryTime` = 0, `procFlags` = 0, `procCharges` = 0, `effectApplyAuraName1` = 4, `effectBasePoints1` = 0, `effectMiscValue1` = 0, `effect2` = 0, `effectApplyAuraName2` = 0, `effectBasePoints2` = 0, `effectMiscValue2` = 0, `entry` = 40015, `build` = 5875, `name` = 'Kardia Link', `nameSubtext` = '', `description` = 'Internal caster aura storing the current Kardia ally.', `auraDescription` = '', `script_name` = 'spell_sage_kardia_link';
+INSERT INTO spell_template SELECT * FROM sage_spell;
+
+-- Kardia Heal
+DROP TEMPORARY TABLE IF EXISTS sage_spell;
+CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
+INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10917 AND build <= 5875 ORDER BY build DESC LIMIT 1;
+UPDATE sage_spell SET `spellLevel` = 60, `baseLevel` = 60, `maxLevel` = 60, `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `castingTimeIndex` = 1, `manaCost` = 0, `effectBasePoints1` = 169, `effectDieSides1` = 1, `effectRealPointsPerLevel1` = 0, `effectBonusCoefficient1` = 0, `startRecoveryTime` = 0, `startRecoveryCategory` = 0, `entry` = 40016, `build` = 5875, `name` = 'Kardia Heal', `nameSubtext` = '', `description` = 'Internal triggered heal restoring 170 health to the marked ally.', `auraDescription` = '', `script_name` = '';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 DROP TEMPORARY TABLE IF EXISTS sage_spell;

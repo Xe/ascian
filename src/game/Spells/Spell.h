@@ -363,6 +363,7 @@ class Spell
         void SetChannelingVisual(bool value) { m_isChannelingVisual = value; }
         bool IsChannelingVisual() const { return m_isChannelingVisual; }
 
+        float GetTotalDamage() const { return m_damage; }
         int32 GetAbsorbedDamage() const { return m_absorbed; }
 
         SpellCaster* const m_caster = nullptr;

@@ -36,6 +36,7 @@ set (SCRIPTS_SRCS
     ScriptLoader_noscripts.cpp
     battlegrounds/battleground.cpp
     battlegrounds/battleground_alterac.cpp
+    custom/sage.cpp
     custom/custom.cpp
     custom/custom_creatures.cpp
     eastern_kingdoms/alterac_mountains/alterac_mountains.cpp
