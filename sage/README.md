@@ -30,7 +30,9 @@ The client needs `Spell.dbc` rows and `SkillLineAbility.dbc` mappings.
 The Sage tab also needs `SkillLine.dbc` and `SkillRaceClassInfo.dbc` rows.
 The current mappings put the playable spells in a separate Sage tab.
 Skill line 800 and a copy of the Priest Holy routing row define this tab.
-The patch keeps the stock icons from each spell template.
+Each spell names a `SpellIcon.dbc` row with its own id (`spellIconId`).
+The `ffxi2adt` tool makes those rows and the icon files from the FFXIV install.
+It packs them in `patch-4.MPQ` (`ffxi2adt spells --xiv`).
 
 Generate the client tables and pack the archive:
 
@@ -43,6 +45,11 @@ build/sage-mpq/debug/sage-mpq pack build/client-dbc build/patch-5.MPQ
 Copy `build/patch-5.MPQ` to the client's `Data` directory.
 Close and reopen the client to load the patch.
 The separate archive preserves `patch-4.MPQ`, which contains the maps.
+
+`patch-4.MPQ` can carry the same tables: `ffxi2adt spells --skill-tables build/client-dbc`
+takes the three skill tables from here and makes `Spell.dbc` from the same contract.
+The 17 spell rows of both generators are equal on every field and text.
+Use one archive or both; `patch-5.MPQ` wins when both hold a table.
 
 ## Field mapping
 
@@ -79,6 +86,7 @@ It clears the rank text and replaces all eight localized names and descriptions.
 | `effectMiscValue1`–`effectMiscValue3` | MiscValue array, columns 106–108 |
 | `effectTriggerSpell1`–`effectTriggerSpell3` | TriggerSpell array, columns 109–111 |
 | `name`, `nameSubtext`, `description`, `auraDescription` | String offsets at columns 120, 129, 138, 147 |
+| `spellIconId` | SpellIconID, column 117 |
 | `startRecoveryCategory`, `startRecoveryTime` | Global cooldown fields, columns 157–158 |
 | `spellFamilyName`, `spellFamilyFlags` | Family, column 160, and 64-bit flags, columns 161–162 |
 | `effectBonusCoefficient1` | Server field only. No 5875 DBC equivalent. |
