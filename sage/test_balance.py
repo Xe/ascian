@@ -83,6 +83,23 @@ class SageBalanceTests(unittest.TestCase):
             if not 40000 <= spell_id <= 40099:
                 self.assertEqual(self.generated[spell_id],row,spell_id)
 
+    def test_sage_tab_routes_every_race_and_class(self):
+        lines = Dbc(self.out/'SkillLine.dbc',22)
+        line = next(r for r in lines.rows if lines.get(r,0)==800)
+        self.assertEqual(lines.get(line,21),40000)
+        routing = Dbc(self.out/'SkillRaceClassInfo.dbc',8)
+        rows = [r for r in routing.rows if routing.get(r,1)==800]
+        self.assertEqual(len(rows),1)
+        route = rows[0]
+        self.assertEqual(routing.get(route,2),0)
+        self.assertEqual(routing.get(route,3),0)
+        self.assertEqual(routing.get(route,4) & 0x80,0)
+        abilities = Dbc(self.out/'SkillLineAbility.dbc',15)
+        for row in abilities.rows:
+            if abilities.get(row,1)==800:
+                self.assertEqual(abilities.get(row,3),0)
+                self.assertEqual(abilities.get(row,4),0)
+
     def test_original_ids_and_icons_are_preserved(self):
         for spell_id,name in [(40000,'Dosis'),(40002,'Diagnosis'),(40003,'Prognosis'),(40008,'Phlegma')]:
             self.assertEqual(self.contract[spell_id]['name'],name)

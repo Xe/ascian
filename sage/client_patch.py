@@ -87,11 +87,14 @@ def generate(base, out):
     lines.put(line, 0, sage_line)
     lines.text(line, 3, 'Sage')
     lines.text(line, 12, 'Sage damage, healing, shields, and resources.')
+    lines.put(line, 21, 40000)  # The custom XIV Dosis icon identifies the Sage tab.
     lines.rows.append(line)
     route = next(r for r in routing.rows if routing.get(r, 1) == 56
                  and routing.get(r, 3) == 16).copy()
     routing.put(route, 0, 60000)
     routing.put(route, 1, sage_line)
+    routing.put(route, 2, 0)  # Any race/class that knows Sage spells gets this tab.
+    routing.put(route, 3, 0)
     routing.rows.append(route)
     templates = {spells.get(row, 0): row for row in spells.rows}
     # Regeneration clears only this project's rows.
@@ -127,7 +130,7 @@ def generate(base, out):
                 template = next(a for a in abilities.rows if abilities.get(a, 2) == 10934)
                 ability = template.copy()
                 for column, value in {0:60000+spell_id-40000, 1:sage_line, 2:spell_id, 3:0,
-                                      4:16, 7:0, 8:0, 9:0}.items():
+                                      4:0, 7:0, 8:0, 9:0}.items():
                     abilities.put(ability, column, value)
                 abilities.rows.append(ability)
             spells.rows.append(row)
