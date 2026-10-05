@@ -1,0 +1,9 @@
+# Use with the existing realm compose file; it does not edit that repository.
+services:
+  worldserver:
+    command: [mangosd, -c, /opt/vmangos/config/mangosd.conf]
+    volumes:
+      - /home/xe/code/vmangos-ascian/build/runtime/mangosd:/usr/local/bin/mangosd:ro
+      - /home/xe/code/vmangos-ascian/build/runtime/lib:/opt/ascian/lib:ro
+    environment:
+      LD_LIBRARY_PATH: /opt/ascian/lib
