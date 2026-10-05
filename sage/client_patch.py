@@ -20,7 +20,7 @@ FIELDS = dict(school=1, category=2, castUI=3, dispel=4, mechanic=5,
               stackAmount=39, manaCostPercentage=156, startRecoveryCategory=157,
               startRecoveryTime=158, maxTargetLevel=159, spellFamilyName=160,
               maxAffectedTargets=163, dmgClass=164, preventionType=165,
-              spellIconId=117)
+              spellVisual1=115, spellVisual2=116, spellIconId=117)
 ARRAYS = dict(effect=61, effectDieSides=64, effectBaseDice=67,
               effectDicePerLevel=70, effectRealPointsPerLevel=73,
               effectBasePoints=76, effectMechanic=79, effectImplicitTargetA=82,

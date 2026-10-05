@@ -19,6 +19,8 @@ The Compose override uses the existing realm config and data mounts.
 It adds the compiled binary and its runtime libraries.
 
 Addersgall uses a timer aura and a separate charge aura.
+The timer, charge and Kardia link auras have no spell visual.
+The visual of Inner Focus, their template, loops a sound while the aura is on.
 The charge aura disappears at zero. The timer continues and restores one charge each 20 seconds.
 Kardia stores its ally GUID in an aura on the caster.
 Direct damage heals that ally after a successful damaging hit.
@@ -86,6 +88,7 @@ It clears the rank text and replaces all eight localized names and descriptions.
 | `effectMiscValue1`–`effectMiscValue3` | MiscValue array, columns 106–108 |
 | `effectTriggerSpell1`–`effectTriggerSpell3` | TriggerSpell array, columns 109–111 |
 | `name`, `nameSubtext`, `description`, `auraDescription` | String offsets at columns 120, 129, 138, 147 |
+| `spellVisual1`, `spellVisual2` | SpellVisual, columns 115–116 |
 | `spellIconId` | SpellIconID, column 117 |
 | `startRecoveryCategory`, `startRecoveryTime` | Global cooldown fields, columns 157–158 |
 | `spellFamilyName`, `spellFamilyFlags` | Family, column 160, and 64-bit flags, columns 161–162 |
