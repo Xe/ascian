@@ -79,6 +79,10 @@ def generate(base, out):
     abilities = Dbc(base/'SkillLineAbility.dbc', 15)
     lines = Dbc(base/'SkillLine.dbc', 22)
     routing = Dbc(base/'SkillRaceClassInfo.dbc', 8)
+    cast_times = Dbc(base/'SpellCastTimes.dbc', 4)
+    cast_times.rows = [r for r in cast_times.rows if not 40000 <= cast_times.get(r,0) <= 40002]
+    for cast_id, milliseconds in [(40000,1050),(40001,1400),(40002,1750)]:
+        cast_times.rows.append(bytearray(struct.pack('<4I',cast_id,milliseconds,0,milliseconds)))
     sage_line = 800
     # Clone Holy's tab and race/class routing, then give Sage its own name.
     lines.rows = [r for r in lines.rows if lines.get(r, 0) != sage_line]
@@ -139,6 +143,7 @@ def generate(base, out):
     abilities.write(out/'SkillLineAbility.dbc')
     lines.write(out/'SkillLine.dbc')
     routing.write(out/'SkillRaceClassInfo.dbc')
+    cast_times.write(out/'SpellCastTimes.dbc')
     print(f'Generated {len(rank_info)} playable Sage ranks plus three internal spells.')
 
 

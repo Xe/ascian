@@ -6,7 +6,7 @@ DELETE FROM spell_template WHERE entry BETWEEN 40000 AND 40099;
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10934 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 8', `school` = 3, `entry` = 40000, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 8', `school` = 3, `castingTimeIndex` = 40002, `entry` = 40000, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Eukrasian Dosis
@@ -125,49 +125,49 @@ INSERT INTO spell_template SELECT * FROM sage_spell;
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 585 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 1', `school` = 3, `entry` = 40017, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 1', `school` = 3, `castingTimeIndex` = 40000, `entry` = 40017, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Dosis
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 591 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 2', `school` = 3, `entry` = 40018, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 2', `school` = 3, `castingTimeIndex` = 40001, `entry` = 40018, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Dosis
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 598 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 3', `school` = 3, `entry` = 40019, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 3', `school` = 3, `castingTimeIndex` = 40002, `entry` = 40019, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Dosis
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 984 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 4', `school` = 3, `entry` = 40020, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 4', `school` = 3, `castingTimeIndex` = 40002, `entry` = 40020, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Dosis
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 1004 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 5', `school` = 3, `entry` = 40021, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 5', `school` = 3, `castingTimeIndex` = 40002, `entry` = 40021, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Dosis
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 6060 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 6', `school` = 3, `entry` = 40022, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 6', `school` = 3, `castingTimeIndex` = 40002, `entry` = 40022, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Dosis
 DROP TEMPORARY TABLE IF EXISTS sage_spell;
 CREATE TEMPORARY TABLE sage_spell LIKE spell_template;
 INSERT INTO sage_spell SELECT * FROM spell_template WHERE entry = 10933 AND build <= 5875 ORDER BY build DESC LIMIT 1;
-UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 7', `school` = 3, `entry` = 40023, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
+UPDATE sage_spell SET `spellFamilyName` = 0, `spellFamilyFlags` = 0, `stances` = 0, `stancesNot` = 0, `spellIconId` = 40000, `nameSubtext` = 'Rank 7', `school` = 3, `castingTimeIndex` = 40002, `entry` = 40023, `build` = 5875, `name` = 'Dosis', `description` = 'Deals $s1 nature damage to one enemy.', `auraDescription` = '', `script_name` = 'spell_sage_damage';
 INSERT INTO spell_template SELECT * FROM sage_spell;
 
 -- Diagnosis

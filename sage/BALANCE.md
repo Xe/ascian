@@ -8,7 +8,9 @@ Several mana costs were also much lower than the comparable stock spells.
 The new kit uses the stock 5875 realm data as its baseline.
 Dosis copies Smite ranks. Diagnosis copies Lesser Heal and Flash Heal ranks.
 Prognosis copies Prayer of Healing ranks.
-Each copy keeps the stock mana cost, cast time, damage range, level growth, and spell-power coefficient.
+Each copy keeps the stock mana cost, damage range, level growth, and spell-power coefficient.
+Dosis cast times are 30% shorter: 1.05 seconds at rank 1, 1.4 at rank 2, and 1.75 at ranks 3–8.
+Other actions retain stock cast times. The normal global cooldown still applies.
 Nature damage and the Sage names remain custom.
 
 ## Rank progression
@@ -49,9 +51,9 @@ Fractional rolls round through the engine, so endpoints can differ by one point.
 
 | Level | Action | Base result | Mana | Cast time |
 |---|---|---|---|---|
-| 15 | Dosis rank 3 | About 55–63 damage | 60 | 2.5 seconds |
+| 15 | Dosis rank 3 | About 55–63 damage | 60 | 1.75 seconds |
 | 15 | Diagnosis rank 3 | 143–165 health | 75 | 2.5 seconds |
-| 60 | Dosis rank 8 | About 385–429 damage | 280 | 2.5 seconds |
+| 60 | Dosis rank 8 | About 385–429 damage | 280 | 1.75 seconds |
 | 60 | Diagnosis rank 10 | About 829–975 health | 380 | 1.5 seconds |
 | 60 | Prognosis rank 4 | 939–991 health per party member | 1030 | 3 seconds |
 | 60 | Eukrasian Dosis rank 8 | 852 damage over 18 seconds | 470 | Instant, after Eukrasia |

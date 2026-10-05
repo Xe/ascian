@@ -5,5 +5,6 @@ services:
     volumes:
       - /home/xe/code/vmangos-ascian/build/runtime/mangosd:/usr/local/bin/mangosd:ro
       - /home/xe/code/vmangos-ascian/build/runtime/lib:/opt/ascian/lib:ro
+      - /home/xe/code/vmangos-ascian/build/client-dbc/SpellCastTimes.dbc:/opt/vmangos/storage/data/5875/dbc/SpellCastTimes.dbc:ro
     environment:
       LD_LIBRARY_PATH: /opt/ascian/lib

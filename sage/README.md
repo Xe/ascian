@@ -35,6 +35,7 @@ Eukrasian Dosis heals that ally for 20% of actual damage after each damaging tic
 
 The client needs `Spell.dbc` rows and `SkillLineAbility.dbc` mappings.
 The Sage tab also needs `SkillLine.dbc` and `SkillRaceClassInfo.dbc` rows.
+`SpellCastTimes.dbc` adds the three shorter Dosis cast times. The server mounts the same generated table.
 The current mappings put the playable spells in a separate Sage tab.
 Skill line 800 and a copy of the Priest Holy routing row define this tab.
 Each spell names a `SpellIcon.dbc` row with its own id (`spellIconId`).
@@ -107,7 +108,7 @@ It applies the rank text and replaces all eight localized names and descriptions
 - The spell SQL applied twice without duplicate rows.
 - The live world server loaded the initial 17 spell rows and reached healthy status.
 - The expanded client patch contains 73 spell rows and 70 Sage spellbook mappings.
-- The MPQ packer read all four tables back and compared their bytes with the generated tables.
+- The MPQ packer read all five tables back and compared their bytes with the generated tables.
 - The installed archive matches the generated archive.
 
 Combat behavior, the rendered spellbook, and the trainer window still need live checks.

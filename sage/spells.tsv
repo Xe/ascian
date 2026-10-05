@@ -1,5 +1,5 @@
 id	name	base	changes	script	note
-40000	Dosis	10934	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 8;school=3	spell_sage_damage	Deals $s1 nature damage to one enemy.
+40000	Dosis	10934	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 8;school=3;castingTimeIndex=40002	spell_sage_damage	Deals $s1 nature damage to one enemy.
 40001	Eukrasian Dosis	10894	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40001;nameSubtext=Rank 8;school=3;startRecoveryCategory=133;startRecoveryTime=1500	spell_sage_eukrasian_dosis	Consumes Eukrasia to deal $s1 nature damage every $t1 seconds for $d.
 40002	Diagnosis	10917	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40002;nameSubtext=Rank 10	-	Heals one ally for $s1 health.
 40003	Prognosis	10961	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40003;nameSubtext=Rank 4;effectRadiusIndex1=10	-	Heals nearby party members for $s1 health.
@@ -16,13 +16,13 @@ id	name	base	changes	script	note
 40014	Addersgall Charge	14751	spellLevel=1;baseLevel=1;maxLevel=60;spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;attributes=0;attributesEx2=0;durationIndex=21;recoveryTime=0;procFlags=0;procCharges=0;stackAmount=3;effectApplyAuraName1=4;effectBasePoints1=0;effectMiscValue1=0;effect2=0;effectApplyAuraName2=0;effectBasePoints2=0;effectMiscValue2=0;spellIconId=40014;spellVisual1=0;spellVisual2=0	-	Internal resource aura holding one to three Addersgall charges.
 40015	Kardia Link	14751	spellLevel=1;baseLevel=1;maxLevel=60;spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;attributes=0;attributesEx2=0;durationIndex=21;recoveryTime=0;procFlags=0;procCharges=0;effectApplyAuraName1=4;effectBasePoints1=0;effectMiscValue1=0;effect2=0;effectApplyAuraName2=0;effectBasePoints2=0;effectMiscValue2=0;spellIconId=40015;spellVisual1=0;spellVisual2=0	spell_sage_kardia_link	Internal caster aura storing the current Kardia ally.
 40016	Kardia Heal	10917	spellLevel=1;baseLevel=1;maxLevel=60;spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;castingTimeIndex=1;manaCost=0;effectBasePoints1=169;effectDieSides1=1;effectRealPointsPerLevel1=0;effectBonusCoefficient1=0;startRecoveryTime=0;startRecoveryCategory=0;spellIconId=40016	-	Internal heal restoring 20 percent of the triggering Sage damage without additional healing scaling.
-40017	Dosis	585	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 1;school=3	spell_sage_damage	Deals $s1 nature damage to one enemy.
-40018	Dosis	591	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 2;school=3	spell_sage_damage	Deals $s1 nature damage to one enemy.
-40019	Dosis	598	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 3;school=3	spell_sage_damage	Deals $s1 nature damage to one enemy.
-40020	Dosis	984	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 4;school=3	spell_sage_damage	Deals $s1 nature damage to one enemy.
-40021	Dosis	1004	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 5;school=3	spell_sage_damage	Deals $s1 nature damage to one enemy.
-40022	Dosis	6060	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 6;school=3	spell_sage_damage	Deals $s1 nature damage to one enemy.
-40023	Dosis	10933	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 7;school=3	spell_sage_damage	Deals $s1 nature damage to one enemy.
+40017	Dosis	585	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 1;school=3;castingTimeIndex=40000	spell_sage_damage	Deals $s1 nature damage to one enemy.
+40018	Dosis	591	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 2;school=3;castingTimeIndex=40001	spell_sage_damage	Deals $s1 nature damage to one enemy.
+40019	Dosis	598	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 3;school=3;castingTimeIndex=40002	spell_sage_damage	Deals $s1 nature damage to one enemy.
+40020	Dosis	984	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 4;school=3;castingTimeIndex=40002	spell_sage_damage	Deals $s1 nature damage to one enemy.
+40021	Dosis	1004	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 5;school=3;castingTimeIndex=40002	spell_sage_damage	Deals $s1 nature damage to one enemy.
+40022	Dosis	6060	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 6;school=3;castingTimeIndex=40002	spell_sage_damage	Deals $s1 nature damage to one enemy.
+40023	Dosis	10933	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40000;nameSubtext=Rank 7;school=3;castingTimeIndex=40002	spell_sage_damage	Deals $s1 nature damage to one enemy.
 40024	Diagnosis	2050	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40002;nameSubtext=Rank 1	-	Heals one ally for $s1 health.
 40025	Diagnosis	2052	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40002;nameSubtext=Rank 2	-	Heals one ally for $s1 health.
 40026	Diagnosis	2053	spellFamilyName=0;spellFamilyFlags=0;stances=0;stancesNot=0;spellIconId=40002;nameSubtext=Rank 3	-	Heals one ally for $s1 health.

@@ -56,7 +56,20 @@ class SageBalanceTests(unittest.TestCase):
             actual = self.generated[int(r['id'])]
             template = self.templates[int(entry['base'])]
             for col in columns:
+                if r['family']=='Dosis' and col==18:
+                    continue
                 self.assertEqual(actual[col*4:col*4+4], template[col*4:col*4+4], (entry['name'],r['rank'],col))
+
+    def test_dosis_cast_times_are_thirty_percent_shorter(self):
+        times = Dbc(self.out/'SpellCastTimes.dbc',4)
+        by_id = {times.get(r,0): times.get(r,1) for r in times.rows}
+        for rank in self.ranks:
+            if rank['family']!='Dosis':
+                continue
+            spell_id = int(rank['id'])
+            original = self.templates[int(self.contract[spell_id]['base'])]
+            actual = self.generated[spell_id]
+            self.assertEqual(by_id[self.spells.get(actual,18)],by_id[self.stock.get(original,18)]*7//10)
 
     def test_low_level_characters_do_not_get_endgame_ranks(self):
         expected = {'Dosis':3, 'Diagnosis':3, 'Prognosis':0, 'Eukrasian Dosis':2,

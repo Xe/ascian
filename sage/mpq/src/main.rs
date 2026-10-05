@@ -14,17 +14,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .block_size(3)
                 .default_compression(wow_mpq::compression::flags::ZLIB)
                 .listfile_option(ListfileOption::None);
-            for name in ["Spell.dbc", "SkillLineAbility.dbc", "SkillLine.dbc", "SkillRaceClassInfo.dbc"] {
+            for name in ["Spell.dbc", "SkillLineAbility.dbc", "SkillLine.dbc", "SkillRaceClassInfo.dbc", "SpellCastTimes.dbc"] {
                 let bytes = fs::read(format!("{}/{}", args[2], name))?;
                 builder = builder.add_file_data(bytes, &format!("DBFilesClient\\{name}"));
             }
             builder.build(&args[3])?;
             let mut archive = Archive::open(&args[3])?;
-            for name in ["Spell.dbc", "SkillLineAbility.dbc", "SkillLine.dbc", "SkillRaceClassInfo.dbc"] {
+            for name in ["Spell.dbc", "SkillLineAbility.dbc", "SkillLine.dbc", "SkillRaceClassInfo.dbc", "SpellCastTimes.dbc"] {
                 assert_eq!(archive.read_file(&format!("DBFilesClient\\{name}"))?,
                            fs::read(format!("{}/{}", args[2], name))?);
             }
-            println!("Packed and read back all four client tables.");
+            println!("Packed and read back all five client tables.");
         }
         _ => return Err("usage: sage-mpq extract ARCHIVE MEMBER OUTPUT | pack DBC_DIR OUTPUT".into()),
     }
