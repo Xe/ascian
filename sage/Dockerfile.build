@@ -1,0 +1,4 @@
+FROM ghcr.io/mserajnik/vmangos-server@sha256:caac85171dd41203455fdfade29b11ad3c55e9fe8c4e2b9c1b9fad147d8c5622
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential cmake ninja-build git libmariadb-dev libssl-dev zlib1g-dev && rm -rf /var/lib/apt/lists/*
+WORKDIR /src
