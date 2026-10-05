@@ -37,6 +37,26 @@
 #include "MovementPacketSender.h"
 #include "MoveSpline.h"
 #include "Geometry.h"
+#include "Group.h"
+#include <mutex>
+#include <set>
+
+// vmangos-ascian: players whose dungeon run ended at a gated exit. Their instances
+// reset when they arrive outside: a player cannot reset an instance from inside it.
+static std::mutex s_ascianResetMutex;
+static std::set<ObjectGuid> s_ascianResetOnArrival;
+
+void AscianResetInstancesOnArrival(ObjectGuid guid)
+{
+    std::lock_guard<std::mutex> guard(s_ascianResetMutex);
+    s_ascianResetOnArrival.insert(guid);
+}
+
+static bool AscianTakeResetOnArrival(ObjectGuid guid)
+{
+    std::lock_guard<std::mutex> guard(s_ascianResetMutex);
+    return s_ascianResetOnArrival.erase(guid) > 0;
+}
 
 void WorldSession::HandleMoveWorldportAckOpcode(NullClientPacket const& /*packet*/)
 {
@@ -202,6 +222,15 @@ void WorldSession::HandleMoveWorldportAck()
 
     //lets process all delayed operations on successful teleport
     GetPlayer()->ProcessDelayedOperations();
+
+    // vmangos-ascian: the run ended at a gated exit, so the instance starts again.
+    if (AscianTakeResetOnArrival(GetPlayer()->GetObjectGuid()))
+    {
+        if (Group* pGroup = GetPlayer()->GetGroup())
+            pGroup->ResetInstances(INSTANCE_RESET_ALL, GetPlayer());
+        else
+            GetPlayer()->ResetInstances(INSTANCE_RESET_ALL);
+    }
 
     // Let the client know its new position by sending a heartbeat!
     // The Windows client figures this out by itself, but the MacOS one does

@@ -619,6 +619,9 @@ void WorldSession::HandleResurrectResponseOpcode(WorldPackets::Misc::ResurrectRe
     GetPlayer()->ResurrectUsingRequestData();     // will call SpawnCorpseBones
 }
 
+// Defined in MovementHandler.cpp.
+void AscianResetInstancesOnArrival(ObjectGuid guid);
+
 void WorldSession::HandleAreaTriggerOpcode(WorldPackets::Misc::AreaTrigger const& packet)
 {
     Player* const pPlayer = GetPlayer();
@@ -791,6 +794,12 @@ void WorldSession::HandleAreaTriggerOpcode(WorldPackets::Misc::AreaTrigger const
             return;
         }
     }
+
+    // vmangos-ascian: an exit of a dungeon that takes a condition (the last boss is
+    // dead) ends the run. The instance resets when the player arrives outside.
+    if (pTeleTrigger->requiredCondition && pPlayer->GetMap()->IsDungeon() &&
+        pTeleTrigger->destination.mapId != pPlayer->GetMapId())
+        AscianResetInstancesOnArrival(pPlayer->GetObjectGuid());
 
     pPlayer->TeleportTo(pTeleTrigger->destination);
 }
