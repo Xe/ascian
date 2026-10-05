@@ -12,12 +12,16 @@ Generate the repeatable SQL:
 UV_CACHE_DIR=/tmp/sage-uv uv run --no-project sage/generate.py
 ```
 
-Apply `sql/ascian/010-sage-spells.sql` to the realm's `mangos` database.
+Apply the SQL files in `sql/ascian/` to the realm's `mangos` database in name order.
 Build the fork with `sage/build.sh`. Restart it with `sage/restart.sh`.
 The restart command stops if a client probe runs.
 The Compose override uses the existing realm config and data mounts.
 It adds the compiled binary and its runtime libraries.
 
+Addersgall is a passive spell that Dosis grants through `spell_learn_spell`.
+The server applies it on login and when a character learns Dosis.
+The passive cannot be canceled and remains through death.
+The server removes it when a character unlearns Dosis.
 Addersgall uses a timer aura and a separate charge aura.
 The timer, charge and Kardia link auras have no spell visual.
 The visual of Inner Focus, their template, loops a sound while the aura is on.
