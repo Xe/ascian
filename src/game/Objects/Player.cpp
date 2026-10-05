@@ -30,6 +30,7 @@
 #include "Log.h"
 #include "Opcodes.h"
 #include "SpellMgr.h"
+#include "SageRanks.h"
 #include "World.h"
 #include "WorldPacket.h"
 #include "WorldSession.h"
@@ -3209,6 +3210,8 @@ void Player::GiveLevel(uint32 level)
     SetPower(POWER_FOCUS, 0);
     SetPower(POWER_HAPPINESS, 0);
 
+    UpdateSageSpellsForLevel();
+
     // update level to hunter/summon pet
     if (Pet* pet = GetPet())
         pet->SynchronizeLevelWithOwner();
@@ -3792,6 +3795,50 @@ void Player::LearnSpell(uint32 spellId, bool dependent, bool talent)
                 LearnSpell(i->second, false);
         }
     }
+    if (IsSageDosisSpell(spellId))
+        UpdateSageSpellsForLevel();
+}
+
+void Player::UpdateSageSpellsForLevel()
+{
+    if (m_updatingSageSpells)
+        return;
+    bool sage = false;
+    for (auto const& rank : sageSpellLevels)
+        if (rank.dosis && HasSpell(rank.spell))
+            sage = true;
+    if (!sage)
+        return;
+
+    m_updatingSageSpells = true;
+    bool changedActions = false;
+    if (MasterPlayer* master = GetSession()->GetMasterPlayer())
+        for (auto& action : master->GetActionButtons())
+            if (action.second.GetType() == ACTION_BUTTON_SPELL && action.second.uState != ACTIONBUTTON_DELETED)
+            {
+                uint32 oldSpell = action.second.GetAction();
+                uint32 replacement = GetSageRankForLevel(oldSpell, GetLevel());
+                if (replacement != oldSpell)
+                {
+                    if (replacement)
+                        action.second.SetActionAndType(replacement, ACTION_BUTTON_SPELL);
+                    else
+                        action.second.uState = ACTIONBUTTON_DELETED;
+                    changedActions = true;
+                }
+            }
+    // Replace the original endgame kit on low-level characters. Removing a
+    // higher rank keeps eligible lower ranks and clears its action bar slots.
+    for (auto const& rank : sageSpellLevels)
+        if (rank.level > GetLevel() && HasSpell(rank.spell))
+            RemoveSpell(rank.spell, false, false);
+    // No class trainer exists yet: Sage ranks unlock with their stock levels.
+    for (auto const& rank : sageSpellLevels)
+        if (rank.level <= GetLevel() && !HasSpell(rank.spell))
+            LearnSpell(rank.spell, false);
+    m_updatingSageSpells = false;
+    if (changedActions && IsInWorld())
+        GetSession()->GetMasterPlayer()->SendInitialActionButtons();
 }
 
 void Player::RemoveSpell(uint32 spellId, bool disabled, bool learnLowRank)
@@ -14979,6 +15026,7 @@ bool Player::LoadFromDB(ObjectGuid guid, SqlQueryHolder* holder)
     // after spell load
     InitTalentForLevel();
     LearnDefaultSpells();
+    UpdateSageSpellsForLevel();
 
     // after spell load, learn rewarded spell if need also
     _LoadQuestStatus(holder->TakeResult(PLAYER_LOGIN_QUERY_LOADQUESTSTATUS));

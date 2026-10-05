@@ -1338,6 +1338,8 @@ class Player final: public Unit
         bool IsImmuneToSpellEffect(SpellEntry const* spellInfo, SpellEffectIndex index, bool castOnSelf) const override;
         void SendSpellRemoved(uint32 spellId) const;
         void LearnSpell(uint32 spellId, bool dependent, bool talent = false);
+        void UpdateSageSpellsForLevel();
+        bool m_updatingSageSpells = false;
         void RemoveSpell(uint32 spellId, bool disabled = false, bool learn_low_rank = true);
         void ResetSpells();
         void LearnDefaultSpells();

@@ -199,6 +199,8 @@ struct AuraScript
     virtual void OnPeriodicTrigger(Aura* /*aura*/, Unit* caster, Unit* target, WorldObject* targetObject, SpellEntry const*& spellInfo) {}
     // called on periodic dummy
     virtual void OnPeriodicDummy(Aura* /*aura*/) {}
+    // called after periodic damage is dealt, with the actual damage amount
+    virtual void OnPeriodicDamageDealt(Aura* /*aura*/, uint32 /*damage*/) {}
     // called on periodic tick end
     virtual void OnPeriodicTickEnd(Aura* /*aura*/) {}
     // called on AreaAura target checking

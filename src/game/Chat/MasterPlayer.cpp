@@ -8,6 +8,7 @@
 #include "ObjectAccessor.h"
 #include "WorldPacket.h"
 #include "Opcodes.h"
+#include "SageRanks.h"
 
 MasterPlayer::MasterPlayer(WorldSession* s):
     m_session(s)
@@ -377,8 +378,11 @@ void MasterPlayer::LoadActions(std::unique_ptr<QueryResult> result)
             uint32 action = fields[1].GetUInt32();
             uint8 type = fields[2].GetUInt8();
 
+            uint32 originalAction = action;
+            if (type == ACTION_BUTTON_SPELL && m_session->GetPlayer())
+                action = GetSageRankForLevel(action, m_session->GetPlayer()->GetLevel());
             if (ActionButton* ab = addActionButton(button, action, type))
-                ab->uState = ACTIONBUTTON_UNCHANGED;
+                ab->uState = action == originalAction ? ACTIONBUTTON_UNCHANGED : ACTIONBUTTON_CHANGED;
             else
                 m_actionButtons[button].uState = ACTIONBUTTON_DELETED;
         }

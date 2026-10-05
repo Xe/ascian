@@ -27,9 +27,9 @@ KardiaLinkScript* GetKardiaLink(Unit* caster)
     return holder ? static_cast<KardiaLinkScript*>(holder->GetAuraScript()) : nullptr;
 }
 
-void HealKardia(Unit* caster)
+void HealKardia(Unit* caster, float damage)
 {
-    if (!caster)
+    if (!caster || damage <= 0)
         return;
     KardiaLinkScript* link = GetKardiaLink(caster);
     if (!link)
@@ -37,7 +37,7 @@ void HealKardia(Unit* caster)
     Unit* ally = caster->GetMap()->GetUnit(link->ally);
     if (ally && ally->IsAlive() && caster->IsWithinDistInMap(ally, 40.0f) &&
         ally->GetSpellAuraHolder(KARDIA, caster->GetObjectGuid()))
-        caster->CastSpell(ally, KARDIA_HEAL, true);
+        caster->CastCustomSpell(ally, KARDIA_HEAL, std::max<int32>(1, int32(damage * 0.20f)), {}, {}, true);
 }
 
 struct SageDamageScript : SpellScript
@@ -45,7 +45,7 @@ struct SageDamageScript : SpellScript
     void OnAfterHit(Spell* spell) const override
     {
         if (spell->GetTotalDamage() > 0)
-            HealKardia(spell->m_casterUnit);
+            HealKardia(spell->m_casterUnit, spell->GetTotalDamage());
     }
 };
 
@@ -65,10 +65,23 @@ struct EukrasiaScript : SpellScript
 
 struct EukrasianDosisAuraScript : AuraScript
 {
-    void OnPeriodicTickEnd(Aura* aura) override
+    void OnPeriodicDamageDealt(Aura* aura, uint32 damage) override
     {
-        if (aura->GetTarget()->IsAlive())
-            HealKardia(aura->GetCaster());
+        HealKardia(aura->GetCaster(), damage);
+    }
+};
+
+// Generic Sage shields retain WoW's small +healing coefficient without
+// reintroducing the priest family flags that apply Weakened Soul.
+struct SageShieldAuraScript : AuraScript
+{
+    int32 OnAuraValueCalculate(Aura*, Unit* caster, Unit*, SpellEntry const* spell,
+                              SpellEffectIndex effect, Item*, int32 value) override
+    {
+        if (caster && spell->EffectApplyAuraName[effect] == SPELL_AURA_SCHOOL_ABSORB)
+            value += int32(caster->SpellBaseHealingBonusDone(spell->GetSpellSchoolMask()) *
+                           spell->EffectBonusCoefficient[effect] * caster->CalculateLevelPenalty(spell));
+        return value;
     }
 };
 
@@ -147,7 +160,7 @@ struct AddersgallSpellScript : SpellScript
         Unit* caster = spell->m_casterUnit;
         caster->RemoveAuraHolderFromStack(ADDERSGALL_CHARGE);
         caster->EnergizeBySpell(caster, spell->m_spellInfo->Id,
-                               caster->GetMaxPower(POWER_MANA) * 7 / 100, POWER_MANA);
+                               caster->GetCreateMana() * 3 / 100, POWER_MANA);
     }
 };
 
@@ -168,7 +181,7 @@ void RegisterSage(char const* name, SpellScript* (*spell)(SpellEntry const*),
 void AddSC_sage()
 {
     RegisterSage("spell_sage_damage", &SpellFactory<SageDamageScript>);
-    RegisterSage("spell_sage_eukrasia", &SpellFactory<EukrasiaScript>);
+    RegisterSage("spell_sage_eukrasia", &SpellFactory<EukrasiaScript>, &AuraFactory<SageShieldAuraScript>);
     RegisterSage("spell_sage_eukrasian_dosis", &SpellFactory<EukrasiaScript>, &AuraFactory<EukrasianDosisAuraScript>);
     RegisterSage("spell_sage_kardia", &SpellFactory<KardiaScript>, &AuraFactory<KardiaAuraScript>);
     RegisterSage("spell_sage_kardia_link", nullptr, &AuraFactory<KardiaLinkScript>);

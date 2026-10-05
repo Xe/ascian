@@ -1,8 +1,9 @@
 # Sage kit
 
-The shared contract is `spells.tsv`. IDs 40000–40013 are playable spells.
+The shared contract is `spells.tsv`. IDs 40000–40013 preserve the original kit. New lower ranks use IDs 40017–40072.
 IDs 40014–40016 are internal resource, link, and heal spells.
 The current base class is Priest. A dedicated Sage class is a later phase.
+`BALANCE.md` explains the stock spell comparisons, rank progression, and resource scaling.
 
 ## Server
 
@@ -21,14 +22,14 @@ It adds the compiled binary and its runtime libraries.
 Addersgall is a passive spell that Dosis grants through `spell_learn_spell`.
 The server applies it on login and when a character learns Dosis.
 The passive cannot be canceled and remains through death.
-The server removes it when a character unlearns Dosis.
+The server removes it when a character unlearns the first Dosis rank.
 Addersgall uses a timer aura and a separate charge aura.
 The timer, charge and Kardia link auras have no spell visual.
 The visual of Inner Focus, their template, loops a sound while the aura is on.
 The charge aura disappears at zero. The timer continues and restores one charge each 20 seconds.
 Kardia stores its ally GUID in an aura on the caster.
-Direct damage heals that ally after a successful damaging hit.
-Eukrasian Dosis heals that ally after each periodic tick while the target remains alive.
+Direct damage heals that ally for 20% of damage after a successful damaging hit.
+Eukrasian Dosis heals that ally for 20% of actual damage after each damaging tick.
 
 ## Client
 
@@ -54,7 +55,8 @@ The separate archive preserves `patch-4.MPQ`, which contains the maps.
 
 `patch-4.MPQ` can carry the same tables: `ffxi2adt spells --skill-tables build/client-dbc`
 takes the three skill tables from here and makes `Spell.dbc` from the same contract.
-The 17 spell rows of both generators are equal on every field and text.
+The local generator also supports the rank text in `nameSubtext`.
+The external generator must support that field before it can rebuild the expanded contract.
 Use one archive or both; `patch-5.MPQ` wins when both hold a table.
 
 ## Field mapping
@@ -62,7 +64,7 @@ Use one archive or both; `patch-5.MPQ` wins when both hold a table.
 `client_patch.py` defines the zero-based 5875 DBC column for each supported server field.
 `Spell.dbc` has 173 fields of four bytes each.
 The generator copies a stock row, then applies the contract changes.
-It clears the rank text and replaces all eight localized names and descriptions.
+It applies the rank text and replaces all eight localized names and descriptions.
 
 | Server column | DBC column or field |
 |---|---|
@@ -103,8 +105,8 @@ It clears the rank text and replaces all eight localized names and descriptions.
 
 - The compatible Docker image and the complete `mangosd` target compiled successfully.
 - The spell SQL applied twice without duplicate rows.
-- The live world server loaded all 17 spell rows and reached healthy status.
-- The client patch generated all 17 names and 14 Sage spellbook mappings.
+- The live world server loaded the initial 17 spell rows and reached healthy status.
+- The expanded client patch contains 73 spell rows and 70 Sage spellbook mappings.
 - The MPQ packer read all four tables back and compared their bytes with the generated tables.
 - The installed archive matches the generated archive.
 

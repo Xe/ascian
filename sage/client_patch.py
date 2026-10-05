@@ -73,6 +73,8 @@ class Dbc:
 
 
 def generate(base, out):
+    with (ROOT/'sage/ranks.tsv').open(newline='') as source:
+        rank_info = {int(r['id']): r for r in csv.DictReader(source, delimiter='\t')}
     spells = Dbc(base/'Spell.dbc', 173)
     abilities = Dbc(base/'SkillLineAbility.dbc', 15)
     lines = Dbc(base/'SkillLine.dbc', 22)
@@ -100,8 +102,12 @@ def generate(base, out):
             spell_id, base_id = int(entry['id']), int(entry['base'])
             row = templates[base_id].copy()
             spells.put(row, 0, spell_id)
+            rank_text = ''
             for change in entry['changes'].split(';'):
                 field, value = change.split('=', 1)
+                if field == 'nameSubtext':
+                    rank_text = value
+                    continue
                 if field in SERVER_ONLY:
                     continue
                 if field == 'spellFamilyFlags':
@@ -112,10 +118,10 @@ def generate(base, out):
                     raise ValueError(f"unmapped server field: {field}")
                 spells.put(row, FIELDS[field], value, field.rstrip('123') in FLOATS)
             spells.text(row, 120, entry['name'])
-            spells.text(row, 129, '')
+            spells.text(row, 129, rank_text)
             spells.text(row, 138, entry['note'])
             spells.text(row, 147, '')
-            if spell_id <= 40013:
+            if spell_id in rank_info:
                 assert spells.get(row, 6) & 0xa0 == 0 and spells.get(row, 3) == 0, entry['name']
                 # Copy Smite's ability and move it into the Sage skill line.
                 template = next(a for a in abilities.rows if abilities.get(a, 2) == 10934)
@@ -130,7 +136,7 @@ def generate(base, out):
     abilities.write(out/'SkillLineAbility.dbc')
     lines.write(out/'SkillLine.dbc')
     routing.write(out/'SkillRaceClassInfo.dbc')
-    print('Generated 17 spell rows and a Sage tab with 14 playable spells.')
+    print(f'Generated {len(rank_info)} playable Sage ranks plus three internal spells.')
 
 
 if __name__ == '__main__':
